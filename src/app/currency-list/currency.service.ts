@@ -14,10 +14,12 @@ export class CurrencyService {
 
   constructor(private _http: Http) { }
 
-  getCurrencies() : Observable<ICurrency[]> {
+  public getCurrencies() : Observable<ICurrency[]> {
+    console.log("Subscribe to getCurrencies");
+
     return this._http.get(this.currencyUrl)
       .map((response: Response) => <ICurrency[]>response.json() )
-      .do(data => console.log('Received ' + JSON.stringify(data)))
+//      .do(data => console.log('Received ' + JSON.stringify(data)))
       .catch(this.handleError);
   } 
 

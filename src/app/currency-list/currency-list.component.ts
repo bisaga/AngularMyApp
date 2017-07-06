@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ICurrency } from "app/currency-list/currency";
+import { CurrencyService } from "app/currency-list/currency.service";
+import { Observable } from "rxjs/Observable";
 
 @Component({
   selector: 'app-currency-list',
@@ -6,10 +9,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./currency-list.component.css']
 })
 export class CurrencyListComponent implements OnInit {
+  title: string = 'Currency List';
+  errorMessage: string;
+  currencies: ICurrency[];
 
-  constructor() { }
+  constructor(private _currencyService: CurrencyService) { }
 
   ngOnInit() {
+      this._currencyService.getCurrencies()
+      .subscribe(currencies => this.currencies = currencies, 
+                  error => this.errorMessage = <any>error);
   }
 
 }

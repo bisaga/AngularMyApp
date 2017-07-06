@@ -1,15 +1,23 @@
-<h1>Currency List</h1>
-<table class='table'>
-  <thead>
-    <tr>
-      <th>Currency</th>
-      <th>Name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>CCC</td>
-      <td>DSCRPT</td>
-    </tr>
-  </tbody>
-</table>
+<div class='panel panel-default'>
+  <div class='panel-heading'>
+    <h3 class='panel-title'>
+      {{title}}
+    </h3>
+  </div>
+
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Currency</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let currency of currencies'>
+        <td>{{currency.code}}</td>
+        <td>{{currency.description}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
