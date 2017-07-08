@@ -3,13 +3,15 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { CurrencyListComponent } from './currency-list/currency-list.component';
+import { CurrencyListComponent } from './currency/currency-list/currency-list.component';
+import { CurrencyEditComponent } from './currency/currency-edit/currency-edit.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CurrencyListComponent
+    CurrencyListComponent,
+    CurrencyEditComponent
   ],
   imports: [
     HttpModule,

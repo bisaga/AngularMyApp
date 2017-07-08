@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ICurrency } from "app/currency-list/currency";
-import { CurrencyService } from "app/currency-list/currency.service";
+import { ICurrency } from "app/currency/currency";
+import { CurrencyService } from "app/currency/currency.service";
 import { Observable } from "rxjs/Observable";
 
 @Component({
@@ -21,4 +21,7 @@ export class CurrencyListComponent implements OnInit {
                   error => this.errorMessage = <any>error);
   }
 
+  onAdd() {
+    alert("Add");
+  }
 }
