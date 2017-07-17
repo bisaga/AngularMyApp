@@ -4,24 +4,40 @@
       {{title}}
     </h3>
   </div>
-  <div>
-    <p> 
-    <button class="btn btn-sm btn-default" (click)="onAdd($event)">Add</button>
-    </p>
-  </div>
-  <table class='table table-responsive'>
-    <thead>
-      <tr>
-        <th>Currency</th>
-        <th>Name</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor='let currency of currencies'>
-        <td>{{currency.code}}</td>
-        <td>{{currency.description}}</td>
-      </tr>
-    </tbody>
-  </table>
+  <div style="padding: 4px">
+    <div style="padding-bottom: 4px">
+      <button class="btn btn-sm btn-primary" (click)="onAdd($event)">
+        <span class="glyphicon glyphicon-plus"></span>
+        Add</button>
+    </div>
+    <table class='table table-responsive table-striped'>
+      <thead>
+        <tr>
+          <th>Currency</th>
+          <th>Name</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let currency of currencies'>
+          <td>{{currency.code}}</td>
+          <td>{{currency.description}}</td>
+          <td align="right">
+            <div class="btn-group">
+            <button class="btn btn-xs btn-default">
+               <span class="glyphicon glyphicon glyphicon-pencil" aria-label="edit"></span>
+            </button>
+            <button class="btn btn-xs btn-default">
+               <span class="glyphicon glyphicon-remove" aria-label="remove"></span>
+            </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
+
+  </div>
 </div>
+
+
