@@ -21,7 +21,18 @@ export class CurrencyListComponent implements OnInit {
                   error => this.errorMessage = <any>error);
   }
 
-  onAdd() {
+  onAdd(event: Event) {
     alert("Add");
   }
+
+  onEdit(event: Event, rowId: number) {
+    alert(`Edit RowId:  ${rowId}`);
+  }
+
+  onDelete(event: Event, rowId: number) {
+    alert(`Delete RowId: ${rowId}`);
+  }
+
+
+
 }

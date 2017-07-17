@@ -1,8 +1,8 @@
 <div class='panel panel-default'>
   <div class='panel-heading'>
-    <h3 class='panel-title'>
+    <span class='panel-title'>
       {{title}}
-    </h3>
+    </span>
   </div>
   <div style="padding: 4px">
     <div style="padding-bottom: 4px">
@@ -24,10 +24,10 @@
           <td>{{currency.description}}</td>
           <td align="right">
             <div class="btn-group">
-            <button class="btn btn-xs btn-default">
+            <button class="btn btn-xs btn-default" (click)="onEdit($event, currency.rowId)">
                <span class="glyphicon glyphicon glyphicon-pencil" aria-label="edit"></span>
             </button>
-            <button class="btn btn-xs btn-default">
+            <button class="btn btn-xs btn-default" (click)="onDelete($event, currency.rowId)">
                <span class="glyphicon glyphicon-remove" aria-label="remove"></span>
             </button>
             </div>
