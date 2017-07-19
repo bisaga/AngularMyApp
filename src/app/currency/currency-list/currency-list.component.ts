@@ -5,24 +5,25 @@ import { Observable } from "rxjs/Observable";
 
 @Component({
   selector: 'app-currency-list',
-  templateUrl: './currency-list.component.html',
-  styleUrls: ['./currency-list.component.css']
+  templateUrl: './currency-list.component.html'
 })
 export class CurrencyListComponent implements OnInit {
   title: string = 'Currency List';
   errorMessage: string;
   currencies: ICurrency[];
+  isEdit: boolean = false;
 
   constructor(private _currencyService: CurrencyService) { }
 
   ngOnInit() {
+
       this._currencyService.getCurrencies()
       .subscribe(currencies => this.currencies = currencies, 
                   error => this.errorMessage = <any>error);
   }
 
   onAdd(event: Event) {
-    alert("Add");
+    this.isEdit = true;
   }
 
   onEdit(event: Event, rowId: number) {

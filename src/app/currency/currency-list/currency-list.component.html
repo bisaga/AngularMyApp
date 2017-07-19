@@ -6,10 +6,14 @@
   </div>
   <div style="padding: 4px">
     <div style="padding-bottom: 4px">
-      <button class="btn btn-sm btn-primary" (click)="onAdd($event)">
+      <button class="btn btn-sm btn-primary" (click)="onAdd($event)" *ngIf="!isEdit">
         <span class="glyphicon glyphicon-plus"></span>
         Add</button>
     </div>
+
+    <app-currency-edit *ngIf="isEdit"></app-currency-edit>  
+
+    
     <table class='table table-responsive table-striped'>
       <thead>
         <tr>
@@ -35,7 +39,6 @@
         </tr>
       </tbody>
     </table>
-
 
   </div>
 </div>

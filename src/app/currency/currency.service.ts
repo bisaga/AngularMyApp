@@ -14,6 +14,9 @@ export class CurrencyService {
 
   constructor(private _http: Http) { }
 
+  /**
+   * Get list of currencies
+   */
   public getCurrencies() : Observable<ICurrency[]> {
     console.log("Subscribe to getCurrencies");
 
@@ -22,6 +25,14 @@ export class CurrencyService {
 //      .do(data => console.log('Received ' + JSON.stringify(data)))
       .catch(this.handleError);
   } 
+
+  /**
+   * Update a currency record
+   */
+  public updateCurrency(currency: ICurrency) {
+    console.log(currency);
+  }
+
 
   handleError(error: Response) {
     console.error(error);
