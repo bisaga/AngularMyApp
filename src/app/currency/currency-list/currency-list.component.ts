@@ -11,19 +11,22 @@ export class CurrencyListComponent implements OnInit {
   title: string = 'Currency List';
   errorMessage: string;
   currencies: ICurrency[];
-  isEdit: boolean = false;
+  isEditState: boolean;
 
-  constructor(private _currencyService: CurrencyService) { }
+  constructor(private currencyService: CurrencyService) { }
 
   ngOnInit() {
+      this.isEditState = this.currencyService.isEdit();
 
-      this._currencyService.getCurrencies()
+      this.currencyService.getCurrencies()
       .subscribe(currencies => this.currencies = currencies, 
                   error => this.errorMessage = <any>error);
   }
 
   onAdd(event: Event) {
-    this.isEdit = true;
+    //TODO: create Observable<boolean> and subscribe to changes !
+    this.currencyService.setEdit(true);
+    this.isEditState = this.currencyService.isEdit();
   }
 
   onEdit(event: Event, rowId: number) {

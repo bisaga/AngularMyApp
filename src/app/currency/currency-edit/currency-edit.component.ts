@@ -11,7 +11,7 @@ import { Observable } from "rxjs/Observable";
 export class CurrencyEditComponent implements OnInit {
   currency: ICurrency;
 
-  constructor(private _currencyService: CurrencyService) { }
+  constructor(private currencyService: CurrencyService) { }
 
   ngOnInit() {
   }
@@ -19,6 +19,10 @@ export class CurrencyEditComponent implements OnInit {
   onSubmit(currency: ICurrency) {
     // this._currencyService.updateCurrency(currency);
     console.log(currency);
+  }
+
+  onCancel() {
+    this.currencyService.setEdit(false);
   }
 
 }

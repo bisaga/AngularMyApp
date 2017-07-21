@@ -10,6 +10,7 @@ import { ICurrency } from './currency';
 
 @Injectable()
 export class CurrencyService {
+  isEditState: boolean = false;
   currencyUrl: string = "/api/currency";
 
   constructor(private _http: Http) { }
@@ -33,10 +34,19 @@ export class CurrencyService {
     console.log(currency);
   }
 
+  public setEdit(value: boolean) {
+    this.isEditState = value;
+  }
+  public isEdit() {
+    return this.isEditState;
+  }
+
+
 
   handleError(error: Response) {
     console.error(error);
     return Observable.throw(error.json().error || 'Severe error');
   }
+
 
 }
