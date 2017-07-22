@@ -5,38 +5,41 @@ import { Observable } from "rxjs/Observable";
 
 @Component({
   selector: 'app-currency-list',
-  templateUrl: './currency-list.component.html'
+  templateUrl: './currency-list.component.html',
+  providers: [ CurrencyService ]
 })
 export class CurrencyListComponent implements OnInit {
   title: string = 'Currency List';
   errorMessage: string;
   currencies: ICurrency[];
-  isEditState: boolean;
+  isEdit: boolean;
 
   constructor(private currencyService: CurrencyService) { }
 
   ngOnInit() {
-      this.isEditState = this.currencyService.isEdit();
+      this.isEdit = false;
 
       this.currencyService.getCurrencies()
       .subscribe(currencies => this.currencies = currencies, 
                   error => this.errorMessage = <any>error);
   }
 
-  onAdd(event: Event) {
-    //TODO: create Observable<boolean> and subscribe to changes !
-    this.currencyService.setEdit(true);
-    this.isEditState = this.currencyService.isEdit();
+  onChange(value: boolean) {
+    console.log(`Closed : "${value}" is intercepted in parent component`);
+    this.isEdit = !value; 
+  }
+
+  onAdd() {
+    this.isEdit = true;
   }
 
   onEdit(event: Event, rowId: number) {
-    alert(`Edit RowId:  ${rowId}`);
+    this.isEdit = true;
+    console.log(`Edit RowId:  ${rowId}`);
   }
 
   onDelete(event: Event, rowId: number) {
-    alert(`Delete RowId: ${rowId}`);
+    console.log(`Delete RowId: ${rowId}`);
   }
-
-
 
 }

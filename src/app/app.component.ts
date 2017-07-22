@@ -3,8 +3,7 @@ import { CurrencyService } from "./currency/currency.service";
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  providers: [ CurrencyService ]
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
   title = 'app';

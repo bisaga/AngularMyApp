@@ -1,28 +1,34 @@
-import { Component, OnInit, NgModule } from '@angular/core';
-import { NgForm} from '@angular/forms';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { NgModel, NgForm} from '@angular/forms';
 import { ICurrency } from "app/currency/currency";
 import { CurrencyService } from "app/currency/currency.service";
-import { Observable } from "rxjs/Observable";
 
 @Component({
   selector: 'app-currency-edit',
   templateUrl: './currency-edit.component.html'
 })
 export class CurrencyEditComponent implements OnInit {
+  @Input() rowId: number = 0;
+  @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>(); 
   currency: ICurrency;
 
   constructor(private currencyService: CurrencyService) { }
 
   ngOnInit() {
-  }
-
-  onSubmit(currency: ICurrency) {
-    // this._currencyService.updateCurrency(currency);
-    console.log(currency);
+    this.currency = {rowId: 0,  code: "", abbreviation: "", description: "asasa"};
+    console.log("onInit");
   }
 
   onCancel() {
-    this.currencyService.setEdit(false);
+    console.log("Click on Cancel");
+    this.close.emit(true);
+  }
+
+  onSubmit(value: ICurrency) {
+    console.log("Click on Save");
+    this.currency = value;
+    console.log(this.currency);
+    this.close.emit(true);
   }
 
 }
