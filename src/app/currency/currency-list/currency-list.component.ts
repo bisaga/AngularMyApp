@@ -23,7 +23,8 @@ export class CurrencyListComponent implements OnInit {
       this.currencyService.getCurrencies()
       .subscribe(currencies => this.currencies = currencies, 
                   error => this.errorMessage = <any>error);
-  }
+
+}
 
   onChange(value: boolean) {
     console.log(`Closed : "${value}" is intercepted in parent component`);

@@ -24,6 +24,16 @@ export class CurrencyService {
       .catch(this.handleError);
   }
 
+  public getCurrency(rowId: number) {
+    var url: string = `${this.currencyUrl}/${rowId}`;
+
+    return this.http.get(url)
+      .map(data => <Currency>data)
+      .do(console.log)
+      .catch(this.handleError);
+  }
+
+
   public deleteCurrency(rowId: number) {
     var key: string = `${rowId}`;
     const params = new HttpParams().set("rowid", key);

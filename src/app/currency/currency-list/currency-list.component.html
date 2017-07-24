@@ -13,7 +13,8 @@
 
     <app-currency-edit 
       *ngIf="isEdit"
-      (close)="onChange($event)" >
+      (close)="onChange($event)" 
+      [rowId]=selectedRowId>
     </app-currency-edit>  
     
     <table class='table table-responsive table-striped'>
