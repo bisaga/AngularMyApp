@@ -1,6 +1,6 @@
 {
   "name": "angular-my-app",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -29,7 +29,7 @@
     "font-awesome": "^4.7.0"
   },
   "devDependencies": {
-    "@angular/cli": "1.1.3",
+    "@angular/cli": "^1.2.3",
     "@angular/compiler-cli": "^4.0.0",
     "@angular/language-service": "^4.0.0",
     "@types/jasmine": "2.5.45",

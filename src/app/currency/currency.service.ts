@@ -1,51 +1,51 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 
-import { ICurrency } from './currency';
+import { Currency } from './currency';
 
 @Injectable()
 export class CurrencyService {
-  isEditState: boolean = false;
   currencyUrl: string = "/api/currency";
 
-  constructor(private _http: Http) { }
+  constructor(private http: HttpClient) { }
 
   /**
    * Get list of currencies
    */
-  public getCurrencies() : Observable<ICurrency[]> {
-    console.log("Subscribe to getCurrencies");
-
-    return this._http.get(this.currencyUrl)
-      .map((response: Response) => <ICurrency[]>response.json() )
-//      .do(data => console.log('Received ' + JSON.stringify(data)))
+  public getCurrencies(): Observable<Currency[]> {
+    return this.http.get(this.currencyUrl)
+      .map(data => <Currency[]>data)
+      .do(console.log)
       .catch(this.handleError);
-  } 
+  }
+
+  public deleteCurrency(rowId: number) {
+    var key: string = `${rowId}`;
+    const params = new HttpParams().set("rowid", key);
+
+    this.http.delete(this.currencyUrl, { params }).subscribe(
+      (res) => console.log(`Deleted ${res} rows.`),
+      this.handleError
+    );
+  }
 
   /**
-   * Update a currency record
+   * Update or Add a currency record
    */
-  public updateCurrency(currency: ICurrency) {
-    console.log(currency);
+  public updateCurrency(currency: Currency) {
+    this.http.post(this.currencyUrl, currency).subscribe(
+      (val) => console.log("POST call successful value returned in body", val),
+      this.handleError);
   }
-
-  public setEdit(value: boolean) {
-    this.isEditState = value;
-  }
-  public isEdit() {
-    return this.isEditState;
-  }
-
-
 
   handleError(error: Response) {
     console.error(error);
-    return Observable.throw(error.json().error || 'Severe error');
+    return Observable.throw(error || 'Severe error');
   }
 
 

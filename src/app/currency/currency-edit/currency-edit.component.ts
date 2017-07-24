@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgModel, NgForm} from '@angular/forms';
-import { ICurrency } from "app/currency/currency";
+import { Currency } from "app/currency/currency";
 import { CurrencyService } from "app/currency/currency.service";
 
 @Component({
@@ -10,24 +10,22 @@ import { CurrencyService } from "app/currency/currency.service";
 export class CurrencyEditComponent implements OnInit {
   @Input() rowId: number = 0;
   @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>(); 
-  currency: ICurrency;
+  currency: Currency = new Currency();
 
   constructor(private currencyService: CurrencyService) { }
 
   ngOnInit() {
-    this.currency = {rowId: 0,  code: "", abbreviation: "", description: "asasa"};
-    console.log("onInit");
   }
 
   onCancel() {
-    console.log("Click on Cancel");
     this.close.emit(true);
   }
 
-  onSubmit(value: ICurrency) {
-    console.log("Click on Save");
-    this.currency = value;
-    console.log(this.currency);
+  onSubmit(value: Currency) {
+    console.log("Submited:");
+    console.log(value);
+    var retCurr = this.currencyService.updateCurrency(value);
+    console.log(`This is a returned value ${retCurr}`);
     this.close.emit(true);
   }
 

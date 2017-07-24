@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ICurrency } from "app/currency/currency";
+import { Currency } from "app/currency/currency";
 import { CurrencyService } from "app/currency/currency.service";
 import { Observable } from "rxjs/Observable";
 
@@ -11,14 +11,15 @@ import { Observable } from "rxjs/Observable";
 export class CurrencyListComponent implements OnInit {
   title: string = 'Currency List';
   errorMessage: string;
-  currencies: ICurrency[];
+  currencies: Currency[];
   isEdit: boolean;
+  selectedRowId: number;
 
   constructor(private currencyService: CurrencyService) { }
 
   ngOnInit() {
       this.isEdit = false;
-
+      this.selectedRowId = 0;
       this.currencyService.getCurrencies()
       .subscribe(currencies => this.currencies = currencies, 
                   error => this.errorMessage = <any>error);
@@ -35,11 +36,17 @@ export class CurrencyListComponent implements OnInit {
 
   onEdit(event: Event, rowId: number) {
     this.isEdit = true;
+    this.selectedRowId = rowId;
     console.log(`Edit RowId:  ${rowId}`);
   }
 
   onDelete(event: Event, rowId: number) {
-    console.log(`Delete RowId: ${rowId}`);
+    var ret: boolean;
+    ret = confirm("Are you sure to delete record ?");
+    if(ret == true) {
+      console.log(`Delete RowId: ${rowId}`);
+      this.currencyService.deleteCurrency(rowId);
+    }
   }
 
 }
