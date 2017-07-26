@@ -29,12 +29,14 @@
         <tr>
           <th>Currency</th>
           <th>Name</th>
+          <th>Description</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor='let currency of currencies'>
           <td>{{currency.code}}</td>
+          <td>{{currency.abbreviation}}</td>
           <td>{{currency.description}}</td>
           <td align="right">
             <div class="btn-group">
