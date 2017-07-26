@@ -11,10 +11,17 @@
         Add</button>
     </div>
 
+    <div>
+      <span *ngIf="errorMessage!=''" >
+        {{errorMessage}}
+      </span>
+    </div>
+
     <app-currency-edit 
       *ngIf="isEdit"
-      (close)="onChange($event)" 
-      [rowId]=selectedRowId>
+      (cancel)="onCancel($event)" 
+      (save)="onSave($event)"
+      [currency]=currency>
     </app-currency-edit>  
     
     <table class='table table-responsive table-striped'>

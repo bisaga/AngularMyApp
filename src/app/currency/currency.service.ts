@@ -34,23 +34,18 @@ export class CurrencyService {
   }
 
 
-  public deleteCurrency(rowId: number) {
+  public deleteCurrency(rowId: number): Observable<number> {
     var key: string = `${rowId}`;
     const params = new HttpParams().set("rowid", key);
 
-    this.http.delete(this.currencyUrl, { params }).subscribe(
-      (res) => console.log(`Deleted ${res} rows.`),
-      this.handleError
-    );
+    return <Observable<number>>this.http.delete(this.currencyUrl, { params });
   }
 
   /**
    * Update or Add a currency record
    */
-  public updateCurrency(currency: Currency) {
-    this.http.post(this.currencyUrl, currency).subscribe(
-      (val) => console.log("POST call successful value returned in body", val),
-      this.handleError);
+  public updateCurrency(currency: Currency): Observable<Currency> {
+    return < Observable<Currency>>this.http.post(this.currencyUrl, currency);
   }
 
   handleError(error: Response) {

@@ -12,42 +12,71 @@ export class CurrencyListComponent implements OnInit {
   title: string = 'Currency List';
   errorMessage: string;
   currencies: Currency[];
+  currency: Currency;
   isEdit: boolean;
-  selectedRowId: number;
 
   constructor(private currencyService: CurrencyService) { }
 
   ngOnInit() {
-      this.isEdit = false;
-      this.selectedRowId = 0;
-      this.currencyService.getCurrencies()
-      .subscribe(currencies => this.currencies = currencies, 
-                  error => this.errorMessage = <any>error);
+    this.isEdit = false;
+    this.refreshList();
+  }
 
-}
+  refreshList() {
+    this.currencyService.getCurrencies()
+    .subscribe(currencies => this.currencies = currencies, 
+               error=> this.onError(error));
+  }
 
-  onChange(value: boolean) {
-    console.log(`Closed : "${value}" is intercepted in parent component`);
+  readCurrency(rowId: number) {
+    this.currencyService.getCurrency(rowId).subscribe(
+      newValue => {
+        this.currency = newValue;
+        this.isEdit = true;
+      },
+      error => this.errorMessage = <any>error
+    );
+  }
+
+  onCancel(value: boolean) {
     this.isEdit = !value; 
   }
 
   onAdd() {
+    this.currency = new Currency();
     this.isEdit = true;
   }
 
+  onSave(value: Currency) {
+    this.currencyService.updateCurrency(value).subscribe(
+      (val)=>{
+        this.isEdit = false;     
+        this.refreshList();
+      }
+    );
+  }
+
   onEdit(event: Event, rowId: number) {
-    this.isEdit = true;
-    this.selectedRowId = rowId;
-    console.log(`Edit RowId:  ${rowId}`);
+    this.readCurrency(rowId);
   }
 
   onDelete(event: Event, rowId: number) {
     var ret: boolean;
     ret = confirm("Are you sure to delete record ?");
     if(ret == true) {
-      console.log(`Delete RowId: ${rowId}`);
-      this.currencyService.deleteCurrency(rowId);
+      this.currencyService.deleteCurrency(rowId).subscribe(
+        ()=>this.refreshList(),
+        error=>this.onError(error)    
+      )
     }
   }
 
+  onError(errorMsg: string) {
+    this.errorMessage = errorMsg;
+  }
+
+  log(msg: string, val?: any) {
+    console.log(msg);
+    console.log(val);
+  }
 }
