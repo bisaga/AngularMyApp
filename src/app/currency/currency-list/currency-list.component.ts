@@ -23,9 +23,10 @@ export class CurrencyListComponent implements OnInit {
   }
 
   refreshList() {
-    this.currencyService.getCurrencies()
-    .subscribe(currencies => this.currencies = currencies, 
-               error=> this.onError(error));
+    this.currencyService.getCurrencies().subscribe(
+      currencies => this.currencies = currencies, 
+      error=> this.onError(error)
+    );
   }
 
   readCurrency(rowId: number) {
@@ -34,7 +35,7 @@ export class CurrencyListComponent implements OnInit {
         this.currency = newValue;
         this.isEdit = true;
       },
-      error => this.errorMessage = <any>error
+      error => this.onError(error)
     );
   }
 
@@ -49,10 +50,11 @@ export class CurrencyListComponent implements OnInit {
 
   onSave(value: Currency) {
     this.currencyService.updateCurrency(value).subscribe(
-      (val)=>{
+      success => {
         this.isEdit = false;     
         this.refreshList();
-      }
+      },
+      error => this.onError(error)
     );
   }
 
@@ -65,8 +67,8 @@ export class CurrencyListComponent implements OnInit {
     ret = confirm("Are you sure to delete record ?");
     if(ret == true) {
       this.currencyService.deleteCurrency(rowId).subscribe(
-        ()=>this.refreshList(),
-        error=>this.onError(error)    
+        success => this.refreshList(),
+        error => this.onError(error)    
       )
     }
   }
