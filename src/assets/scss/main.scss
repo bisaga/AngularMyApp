@@ -1,4 +1,4 @@
-// Sass compiler need information where icons/fonts are relative to main.scss file  
+// Sass compiler need information where icons/fonts are relative to this main.scss file where bootstrap is imported 
 $icon-font-path: '../../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
 
 @import "_custom_variables.scss";
