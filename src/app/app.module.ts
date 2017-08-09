@@ -12,7 +12,7 @@ import { CurrencyEditComponent } from './currency/currency-edit/currency-edit.co
   declarations: [
     AppComponent,
     CurrencyListComponent,
-    CurrencyEditComponent
+    CurrencyEditComponent,
   ],
   imports: [
     HttpClientModule,
