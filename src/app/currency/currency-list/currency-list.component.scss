@@ -1,0 +1,8 @@
+@import "~assets/scss/_bootstrap.scss";
+
+#currency-list {
+    table { 
+        @extend .table, .table-responsive, .table-striped;
+    }
+}
+
