@@ -1,3 +1,18 @@
-@import "_bootstrap.scss";
-@import "~app/currency/currency-list/currency-list.component.scss";
+@import "~bootstrap/scss/functions";
+@import '~assets/scss/_custom.scss'; 
+@import '~bootstrap/scss/bootstrap';
+
+
+/* adjust path as needed */
+$fa-font-path:"~font-awesome/fonts";
+@import '~font-awesome/scss/font-awesome.scss';
+
+@import '~app/currency/currency-list/_currency-list.component.scss';
+@import '~app/currency/currency-edit/_currency-edit.component.scss';
+
+
+#app {
+    @extend .container-fluid;
+    padding: 0.5rem;
+}
 

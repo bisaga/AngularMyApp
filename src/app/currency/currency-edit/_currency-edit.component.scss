@@ -1,0 +1,62 @@
+#app-currency-edit {
+    @extend .card;
+    padding: 0.5rem;
+   
+    .form-panel {
+        @extend .container;
+
+        label {
+            @extend .col-form-label;
+        }
+        input {
+            @extend .form-control;
+        }
+    }
+
+    .form-first-row {
+        @extend .row;
+    }
+
+    .field-group-id {
+        @extend .col-md-3;
+    }
+    .field-group-code {
+        @extend .col-md-3;
+    }
+    .field-group-name {
+        @extend .col-md-6;
+    }
+
+    .field-group-description {
+        @extend .row;
+        @extend .col-md-12;
+    }
+
+    .currency-edit-toolbar {
+        margin-top: 0.5rem;
+        
+        .save-button {
+            @extend .btn;
+            @extend .btn-outline-primary;
+
+            i { 
+                @extend .fa; 
+                @extend .fa-save;
+                padding-right: 0.5rem;
+            }
+        }
+        .cancel-button {
+            @extend .btn;
+            @extend .btn-outline-primary;
+
+            i { 
+                @extend .fa; 
+                @extend .fa-undo;
+                padding-right: 0.5rem;
+            }
+            
+        }
+
+    }
+
+}

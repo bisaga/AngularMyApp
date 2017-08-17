@@ -6,7 +6,6 @@ import { Observable } from "rxjs/Observable";
 @Component({
   selector: 'app-currency-list',
   templateUrl: './currency-list.component.html',
-//  styleUrls: [ './currency-list.component.scss'], // included in the main.scss file, whole app has only one global style definition
   providers: [ CurrencyService ]
 })
 export class CurrencyListComponent implements OnInit {

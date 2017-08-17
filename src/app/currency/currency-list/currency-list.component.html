@@ -1,29 +1,26 @@
-<div id="currency-list" class='panel panel-default'>
-  <div class='panel-heading'>
-    <span class='panel-title'>
-      {{title}}
-    </span>
-  </div>
-  <div style="padding: 4px">
-    <div style="padding-bottom: 4px">
-      <button class="btn btn-sm btn-primary" (click)="onAdd()" *ngIf="!isEdit">
-        <span class="glyphicon glyphicon-plus"></span>
-        Add</button>
+<div id="app-currency-list">
+
+  <h5 class="currency-list-title">
+    {{title}}
+  </h5>
+  <div class="currency-list-content">
+
+    <div class="currency-list-toolbar">
+      <button (click)="onAdd()" *ngIf="!isEdit">
+        <i></i>Add
+    </button>
     </div>
 
-    <div>
-      <span *ngIf="errorMessage!=''" >
+    <div currency-list-message>
+      <span *ngIf="errorMessage!=''">
         {{errorMessage}}
       </span>
     </div>
 
-    <app-currency-edit 
-      *ngIf="isEdit"
-      (cancel)="onCancel($event)" 
-      (save)="onSave($event)"
-      [currency]=currency>
-    </app-currency-edit>  
-    
+
+    <app-currency-edit *ngIf="isEdit" (cancel)="onCancel($event)" (save)="onSave($event)" [currency]=currency>
+    </app-currency-edit>
+
     <table>
       <thead>
         <tr>
@@ -38,21 +35,20 @@
           <td>{{currency.code}}</td>
           <td>{{currency.abbreviation}}</td>
           <td>{{currency.description}}</td>
-          <td align="right">
-            <div class="btn-group">
-            <button class="btn btn-xs btn-default" (click)="onEdit($event, currency.rowId)">
-               <span class="glyphicon glyphicon glyphicon-pencil" aria-label="edit"></span>
-            </button>
-            <button class="btn btn-xs btn-default" (click)="onDelete($event, currency.rowId)">
-               <span class="glyphicon glyphicon-remove" aria-label="remove"></span>
-            </button>
+          <td>
+            <div>
+              <button class="edit-button" (click)="onEdit($event, currency.rowId)">
+                <i></i>
+                <span aria-label="Edit"></span>
+              </button>
+              <button class="delete-button" (click)="onDelete($event, currency.rowId)">
+                  <i></i>
+                  <span aria-label="Delete"></span>
+              </button>
             </div>
           </td>
         </tr>
       </tbody>
     </table>
-
   </div>
 </div>
-
-

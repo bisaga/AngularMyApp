@@ -1,33 +1,29 @@
-<div class="panel panel-default" style="padding: 4px">
-  <div class="row">
-    <div class="col-xs-12">
-      <form id="currency-edit" (ngSubmit)="onSubmit(f.value)" #f="ngForm">
-        <div class="row">
-          <div class="col-sm-2 form-group" *ngIf="currency.rowId>0">
-            <label for="Id">Id</label>
-            <input type="text" class="form-control" id="rowId" [(ngModel)]="currency.rowId" name="rowId" readonly=true #codeCtrl="ngModel">
-          </div>
-          <div class="col-sm-2 form-group">
-            <label for="code">Code</label>
-            <input type="text" class="form-control" id="code" [(ngModel)]="currency.code" name="code" #codeCtrl="ngModel" required>
-          </div>
-          <div class="col-sm-8 form-group">
-            <label for="abreviation">Name</label>
-            <input type="text" class="form-control" id="abbreviation" [(ngModel)]="currency.abbreviation" name="abbreviation" #abbreviationCtrl="ngModel"
-              required>
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="description">Description</label>
-          <input type="text" class="form-control" id="description" [(ngModel)]="currency.description" name="description" #descriptionCtrl="ngModel">
-        </div>
-        <div class="row">
-          <div class="col-xs-12">
-            <button class="btn btn-success" type="submit">Save</button>
-            <button class="btn btn-default" type="button" (click)="onCancel()">Cancel</button>
-          </div>
-        </div>
-      </form>
+<form id="app-currency-edit" (ngSubmit)="onSubmit(f.value)" #f="ngForm">
+  <div class="form-panel">
+    <div class="form-first-row">
+      <div class="field-group-id" *ngIf="currency.rowId>0">
+        <label for="Id">Id</label>
+        <input type="text" id="rowId" [(ngModel)]="currency.rowId" name="rowId" readonly=true #codeCtrl="ngModel">
+      </div>
+      <div class="field-group-code">
+        <label for="code">Code</label>
+        <input type="text" id="code" [(ngModel)]="currency.code" name="code" #codeCtrl="ngModel" required>
+      </div>
+      <div class="field-group-name">
+        <label for="abreviation">Name</label>
+        <input type="text" id="abbreviation" [(ngModel)]="currency.abbreviation" name="abbreviation" #abbreviationCtrl="ngModel"
+          required>
+      </div>
+    </div>
+    <div class="field-group-description">
+      <label for="description">Description</label>
+      <input type="text" id="description" [(ngModel)]="currency.description" name="description" #descriptionCtrl="ngModel">
+    </div>
+    <div>
+      <div class="currency-edit-toolbar">
+        <button class="save-button" type="submit"><i></i>Save</button>
+        <button class="cancel-button" type="button" (click)="onCancel()"><i></i>Cancel</button>
+      </div>
     </div>
   </div>
-</div>
+</form>

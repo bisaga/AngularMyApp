@@ -1,0 +1,57 @@
+#app-currency-list {
+    @extend .card;
+
+    .currency-list-content {
+        @extend .card-body;
+    }
+
+    .currency-list-title {
+        @extend .card-header;
+    }
+
+    .currency-list-toolbar {
+        @extend .btn-toolbar; 
+
+        button {
+            @extend .btn;
+            @extend .btn-outline-primary;
+        }
+        i { 
+            @extend .fa; 
+            @extend .fa-plus;
+            padding-right: 0.5rem;
+        }
+    }
+    
+    table {
+        margin-top: 10px;
+        @extend .table;
+
+        thead {
+            @extend .thead-default;
+        }
+    }
+
+    .edit-button {
+        @extend .btn;
+        @extend .btn-outline-secondary;
+        @extend .btn-sm;
+        
+        i {        
+            @extend .fa; 
+            @extend .fa-pencil;
+        }
+    }
+
+    .delete-button {
+        @extend .btn;
+        @extend .btn-outline-secondary;
+        @extend .btn-sm;
+
+        i {
+            @extend .fa; 
+            @extend .fa-remove;
+        }
+    }
+
+}
